@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import * as BooksAPI from './BooksAPI'
 import Book from './Book';
-import sortBy from 'sort-by'
 import { Link } from 'react-router-dom'
 
 //import sortBy from 'sort-by'
@@ -30,7 +29,6 @@ class BookSearch extends Component {
         {
           booksList = books;
           //Installed dependancy
-          //booksList.sort(sortBy('title'));
           console.log('In API')
           this.setState({booksList});
         }
@@ -59,16 +57,7 @@ class BookSearch extends Component {
                     However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                     you don't find a specific author or title. Every search is limited by search terms.
                   */}
-
-
-
-
                   <input type="text" placeholder="Search by title or author" onChange={(event) => this.searchBooks(event.target.value)}/>
-
-
-
-
-
                 </div>
               </div>
 

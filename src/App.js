@@ -36,34 +36,18 @@ class BooksApp extends React.Component {
   }
 
   changeState = (book, event) => {
-
+    /*
     console.log(this.state.Books)
     console.log(book.id)
     console.log('Current shelf is ' + book.shelf)
     console.log(event.target.value)
-
+  */
     let newState = event.target.value
 
-   BooksAPI.update(book, newState).then(() => this.componentDidMount())
-   /*
-    this.setState((state) => ({
-      Books: state.Books.map(
-        bookToChange => {
-          if(bookToChange.id === book.id)
-          {
-            bookToChange.shelf = newState
-          }
-          else
-          {
-            return bookToChange
-          }
-          return book;
-        }
+   BooksAPI.update(book, newState).then(() => BooksAPI.getAll().then((Books) => {
+      this.setState({ Books })
+    }))
 
-        )
-     })
-    )
-    */
   }
 
   render() {
@@ -85,11 +69,11 @@ class BooksApp extends React.Component {
               </div>
             </div>
             <div className="open-search">
-              <Link to='/create'>Add a book</Link>
+              <Link to='/search'>Add a book</Link>
             </div>
           </div>
       )}/>
-        <Route path="/create" render={() => (
+        <Route path="/search" render={() => (
           <div className="search-books-results">
             <ol className="books-grid"></ol>
 
