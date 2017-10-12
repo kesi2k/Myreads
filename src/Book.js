@@ -18,9 +18,23 @@ class Book extends Component {
 
 
                 <option value="none" disabled>Move to...</option>
-                <option value="currentlyReading"> Currently Reading </option>
-                <option value="wantToRead">Want to Read</option>
-                <option value="read">Read</option>
+
+                { //Check bookshelf value
+                  (book.shelf === "currentlyReading")
+                    ?<option value="currentlyReading"> &#10004; Currently Reading </option>
+                    :<option value="currentlyReading"> Currently Reading </option>
+                }
+                {
+                    (book.shelf === "wantToRead")
+                      ?<option value="wantToRead"> &#10004; Want to Read</option>
+                      :<option value="wantToRead"> Want to Read</option>
+
+                }
+                {
+                  (book.shelf === "read")
+                    ?<option value="read">&#10004; Read</option>
+                    :<option value="read">Read</option>
+                }
                 <option value="none">None</option>
               </select>
             </div>

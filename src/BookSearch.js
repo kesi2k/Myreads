@@ -13,9 +13,10 @@ class BookSearch extends Component {
     booksList: []
   }
 
-  searchBooks = function(query)
+  searchBooks = function(query, existingBooks)
   {
-    console.log(query)
+    //console.log(query)
+    //console.log(existingBooks)
     if (query.length > 1) {
       let booksList = [];
 
@@ -27,9 +28,24 @@ class BookSearch extends Component {
         }
         else
         {
+          // Check if books exist on user page
+          booksList = books
+
+          booksList.forEach(
+            (booksearched) => (
+                existingBooks.forEach(
+                  (existsB) =>
+                  {
+                    if(existsB.id == booksearched.id)
+                    {
+                      booksearched.shelf = existsB.shelf
+                    }
+                  }
+                )
+            )
+          )
+          //console.log('In API')
           booksList = books;
-          //Installed dependancy
-          console.log('In API')
           this.setState({booksList});
         }
       })
@@ -41,7 +57,7 @@ class BookSearch extends Component {
 
   render(){
 
-    const {changeStateBook } = this.props
+    const {changeStateBook, books } = this.props
 
         return(
           <div className="search-books">
@@ -57,7 +73,7 @@ class BookSearch extends Component {
                     However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                     you don't find a specific author or title. Every search is limited by search terms.
                   */}
-                  <input type="text" placeholder="Search by title or author" onChange={(event) => this.searchBooks(event.target.value)}/>
+                  <input type="text" placeholder="Search by title or author" onChange={(event) => this.searchBooks(event.target.value, books)}/>
                 </div>
               </div>
 

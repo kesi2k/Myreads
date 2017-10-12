@@ -79,6 +79,7 @@ class BooksApp extends React.Component {
 
               <BookSearch
               changeStateBook={this.changeState}
+              books={this.state.Books}
               hideSearchPage={this.hideSearch}
               />
           </div>
